@@ -1,0 +1,323 @@
+{
+  "info": {
+    "name": "DEV Laravel Auth v0.4.0",
+    "description": "Core authentication + Sanctum + Google/Apple social login endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "email",
+      "value": "test@example.com"
+    },
+    {
+      "key": "password",
+      "value": "Password@123"
+    },
+    {
+      "key": "reset_token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/health"
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"password_confirmation\": \"{{password}}\",\n  \"device_name\": \"postman\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text",
+            "exec": [
+              "if ([200,201].includes(pm.response.code)) {",
+              " const j = pm.response.json();",
+              " if (j.data?.token) pm.collectionVariables.set('token', j.data.token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"remember\": true,\n  \"device_name\": \"postman\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text",
+            "exec": [
+              "if ([200,201].includes(pm.response.code)) {",
+              " const j = pm.response.json();",
+              " if (j.data?.token) pm.collectionVariables.set('token', j.data.token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/auth/me"
+      }
+    },
+    {
+      "name": "Change Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/auth/change-password",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"current_password\": \"{{password}}\",\n  \"password\": \"NewPassword@123\",\n  \"password_confirmation\": \"NewPassword@123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Forgot Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/forgot-password",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Reset Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/reset-password",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"{{reset_token}}\",\n  \"email\": \"{{email}}\",\n  \"password\": \"Password@123\",\n  \"password_confirmation\": \"Password@123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/auth/logout"
+      }
+    },
+    {
+      "name": "Logout All Devices",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/auth/logout-all"
+      }
+    },
+    {
+      "name": "Deactivate Account",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/auth/deactivate"
+      }
+    },
+    {
+      "name": "OTP Send",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/otp/send",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifier\": \"{{email}}\",\n  \"channel\": \"email\",\n  \"purpose\": \"verification\"\n}"
+        }
+      }
+    },
+    {
+      "name": "OTP Verify",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/otp/verify",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifier\": \"{{email}}\",\n  \"code\": \"123456\",\n  \"channel\": \"email\",\n  \"purpose\": \"verification\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Google Redirect",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/auth/social/google/redirect"
+      }
+    },
+    {
+      "name": "Google Callback",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/auth/social/google/callback"
+      }
+    },
+    {
+      "name": "Apple Redirect",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/auth/social/apple/redirect"
+      }
+    },
+    {
+      "name": "Apple Callback",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/auth/social/apple/callback"
+      }
+    }
+  ]
+}
