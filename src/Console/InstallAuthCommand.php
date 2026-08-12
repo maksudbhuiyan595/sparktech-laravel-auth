@@ -31,7 +31,7 @@ final class InstallAuthCommand extends Command
 
         // Ensure Laravel's API routing is enabled. Laravel 12 projects may not
         // have routes/api.php until the API stack is installed.
-        if ($this->hasCommand('install:api')) {
+        if ($this->getApplication()->has('install:api')) {
             $this->call('install:api', [
                 '--force' => false,
             ]);
