@@ -8,13 +8,12 @@ use Sparktech\Auth\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix(config('sparktech-auth.prefix', 'auth'))
-    ->middleware(config('sparktech-auth.middleware', ['api']))
     ->group(function (): void {
         Route::get('/health', static function () {
             return response()->json([
                 'success' => true,
                 'package' => 'sparktech/laravel-auth',
-                'version' => '0.5.0',
+                'version' => '1.3.0',
                 'status' => 'ready',
                 'auth_driver' => 'sanctum',
             ]);

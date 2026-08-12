@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 return [
+
     'prefix' => env('SPARKTECH_AUTH_PREFIX', 'auth'),
 
     'middleware' => ['api'],

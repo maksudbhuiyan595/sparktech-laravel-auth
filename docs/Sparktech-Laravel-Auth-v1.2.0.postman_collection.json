@@ -1,13 +1,13 @@
 {
   "info": {
-    "name": "Sparktech Laravel Auth v0.4.0",
+    "name": "Sparktech Laravel Auth v1.1.0",
     "description": "Core authentication + Sanctum + Google/Apple social login endpoints.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "base_url",
-      "value": "http://127.0.0.1:8000"
+      "value": "http://127.0.0.1:8000/api"
     },
     {
       "key": "token",
@@ -37,7 +37,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/health"
+        "url": "{{base_url}}/api/auth/health"
       }
     },
     {
@@ -54,7 +54,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/register",
+        "url": "{{base_url}}/api/auth/register",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"password_confirmation\": \"{{password}}\",\n  \"device_name\": \"postman\"\n}"
@@ -89,7 +89,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/login",
+        "url": "{{base_url}}/api/auth/login",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"remember\": true,\n  \"device_name\": \"postman\"\n}"
@@ -124,7 +124,7 @@
             "value": "Bearer {{token}}"
           }
         ],
-        "url": "{{base_url}}/auth/me"
+        "url": "{{base_url}}/api/auth/me"
       }
     },
     {
@@ -145,7 +145,7 @@
             "value": "Bearer {{token}}"
           }
         ],
-        "url": "{{base_url}}/auth/change-password",
+        "url": "{{base_url}}/api/auth/change-password",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"current_password\": \"{{password}}\",\n  \"password\": \"NewPassword@123\",\n  \"password_confirmation\": \"NewPassword@123\"\n}"
@@ -166,7 +166,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/forgot-password",
+        "url": "{{base_url}}/api/auth/forgot-password",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"email\": \"{{email}}\"\n}"
@@ -187,7 +187,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/reset-password",
+        "url": "{{base_url}}/api/auth/reset-password",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"token\": \"{{reset_token}}\",\n  \"email\": \"{{email}}\",\n  \"password\": \"Password@123\",\n  \"password_confirmation\": \"Password@123\"\n}"
@@ -208,7 +208,7 @@
             "value": "Bearer {{token}}"
           }
         ],
-        "url": "{{base_url}}/auth/logout"
+        "url": "{{base_url}}/api/auth/logout"
       }
     },
     {
@@ -225,7 +225,7 @@
             "value": "Bearer {{token}}"
           }
         ],
-        "url": "{{base_url}}/auth/logout-all"
+        "url": "{{base_url}}/api/auth/logout-all"
       }
     },
     {
@@ -242,7 +242,7 @@
             "value": "Bearer {{token}}"
           }
         ],
-        "url": "{{base_url}}/auth/deactivate"
+        "url": "{{base_url}}/api/auth/deactivate"
       }
     },
     {
@@ -259,7 +259,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/otp/send",
+        "url": "{{base_url}}/api/auth/otp/send",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"identifier\": \"{{email}}\",\n  \"channel\": \"email\",\n  \"purpose\": \"verification\"\n}"
@@ -280,7 +280,7 @@
             "value": "application/json"
           }
         ],
-        "url": "{{base_url}}/auth/otp/verify",
+        "url": "{{base_url}}/api/auth/otp/verify",
         "body": {
           "mode": "raw",
           "raw": "{\n  \"identifier\": \"{{email}}\",\n  \"code\": \"123456\",\n  \"channel\": \"email\",\n  \"purpose\": \"verification\"\n}"
@@ -292,7 +292,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": "{{base_url}}/auth/social/google/redirect"
+        "url": "{{base_url}}/api/auth/social/google/redirect"
       }
     },
     {
@@ -300,7 +300,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": "{{base_url}}/auth/social/google/callback"
+        "url": "{{base_url}}/api/auth/social/google/callback"
       }
     },
     {
@@ -308,7 +308,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": "{{base_url}}/auth/social/apple/redirect"
+        "url": "{{base_url}}/api/auth/social/apple/redirect"
       }
     },
     {
@@ -316,7 +316,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": "{{base_url}}/auth/social/apple/callback"
+        "url": "{{base_url}}/api/auth/social/apple/callback"
       }
     }
   ]

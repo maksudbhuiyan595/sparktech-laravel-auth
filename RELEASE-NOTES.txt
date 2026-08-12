@@ -1,18 +1,17 @@
-Sparktech Laravel Auth v0.5.0
+Sparktech Laravel Auth v1.2.0
 
-Package name:
-sparktech/laravel-auth
+Route architecture update:
+- routes/api.php contains the package API endpoints.
+- No `api` prefix is hard-coded inside routes/api.php.
+- The service provider applies `/api` by default when loading the package API routes.
+- The package route file applies `/auth`, resulting in `/api/auth/...`.
 
-PHP:
-^8.2
-
-Laravel:
-^12.0
-
-Install:
-composer require sparktech/laravel-auth
-
-Then:
-php artisan sparktech-auth:install
-php artisan migrate
-php artisan storage:link
+Examples:
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/me
+POST /api/auth/logout
+GET  /api/auth/social/google/redirect
+GET  /api/auth/social/google/callback
+GET  /api/auth/social/apple/redirect
+GET  /api/auth/social/apple/callback

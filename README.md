@@ -68,7 +68,7 @@ php artisan sparktech-auth:install
 The package health endpoint will be available at:
 
 ```text
-GET /api/auth/health
+GET /api/api/auth/health
 ```
 
 Expected response:
@@ -77,7 +77,7 @@ Expected response:
 {
     "success": true,
     "package": "sparktech/laravel-auth",
-    "version": "0.5.0",
+    "version": "1.1.0",
     "status": "ready"
 }
 ```
@@ -124,17 +124,17 @@ The package uses `auth:sanctum` for protected routes.
 ## Core authentication endpoints
 
 ```text
-POST /auth/register
-POST /auth/login
-POST /auth/email/verify-otp
-POST /auth/email/resend-otp
-POST /auth/logout
-POST /auth/logout-all
-GET  /auth/me
-POST /auth/change-password
-POST /auth/forgot-password
-POST /auth/reset-password
-POST /auth/deactivate
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/email/verify-otp
+POST /api/auth/email/resend-otp
+POST /api/auth/logout
+POST /api/auth/logout-all
+GET  /api/auth/me
+POST /api/auth/change-password
+POST /api/auth/forgot-password
+POST /api/auth/reset-password
+POST /api/auth/deactivate
 ```
 
 #
@@ -143,7 +143,7 @@ POST /auth/deactivate
 Registration now works as:
 
 ```text
-POST /auth/register
+POST /api/auth/register
         ↓
 Create user
         ↓
@@ -153,7 +153,7 @@ Store hashed OTP + expiry
         ↓
 Send OTP by email
         ↓
-POST /auth/email/verify-otp
+POST /api/auth/email/verify-otp
         ↓
 Mark email_verified_at
         ↓
@@ -163,7 +163,7 @@ Issue Sanctum token
 Resend:
 
 ```text
-POST /auth/email/resend-otp
+POST /api/auth/email/resend-otp
 ```
 
 Configure Laravel's normal `MAIL_*` environment variables in the host application's `.env`. The package uses Laravel's notification mail channel, so SMTP/Mailgun/SES/etc. can be configured by the host application.
@@ -171,11 +171,11 @@ Configure Laravel's normal `MAIL_*` environment variables in the host applicatio
 ## Social login
 
 ```text
-GET /auth/social/google/redirect
-GET /auth/social/google/callback
+GET /api/auth/social/google/redirect
+GET /api/auth/social/google/callback
 
-GET /auth/social/apple/redirect
-GET /auth/social/apple/callback
+GET /api/auth/social/apple/redirect
+GET /api/auth/social/apple/callback
 ```
 
 The provider system is extensible for Facebook, GitHub, GitLab, LinkedIn and Bitbucket.
@@ -198,16 +198,16 @@ class User extends Authenticatable
 ## API endpoints
 
 ```text
-POST /auth/register
-POST /auth/login
-POST /auth/email/verify-otp
-POST /auth/email/resend-otp
-POST /auth/logout
-POST /auth/logout-all
-GET  /auth/me
-POST /auth/otp/send
-POST /auth/otp/verify
-GET  /auth/health
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/email/verify-otp
+POST /api/auth/email/resend-otp
+POST /api/auth/logout
+POST /api/auth/logout-all
+GET  /api/auth/me
+POST /api/auth/otp/send
+POST /api/auth/otp/verify
+GET  /api/auth/health
 ```
 
 For `/logout` and `/me`, send:
@@ -231,3 +231,28 @@ Core authentication:
 ## Security
 
 This is a proprietary/private package. Do not commit application credentials, OAuth secrets, API keys, or production `.env` files to this repository.
+
+
+## API Routes
+
+The package keeps all authentication API routes in `routes/api.php`. The route file does not hard-code the `api` prefix. The service provider applies the configurable API prefix and middleware when loading the package routes.
+
+By default:
+
+```text
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/logout
+GET  /api/auth/me
+POST /api/auth/logout-all
+POST /api/auth/change-password
+POST /api/auth/deactivate
+POST /api/auth/forgot-password
+POST /api/auth/reset-password
+POST /api/auth/email/verify-otp
+POST /api/auth/email/resend-otp
+POST /api/auth/otp/send
+POST /api/auth/otp/verify
+GET  /api/auth/social/{provider}/redirect
+GET  /api/auth/social/{provider}/callback
+```
