@@ -4,7 +4,7 @@
 
 ## Version
 
-**0.4.0 — Complete Core Authentication + Google/Apple Social Login Foundation**
+**1.0.0 — Laravel 12 Authentication Foundation**
 
 ## Current milestone
 
@@ -52,7 +52,7 @@ From a Laravel application, add the package as a Composer path repository:
     "repositories": [
         {
             "type": "path",
-            "url": "../dev-laravel-auth"
+            "url": "../sparktech-laravel-auth"
         }
     ]
 }
@@ -68,7 +68,7 @@ php artisan sparktech-auth:install
 The package health endpoint will be available at:
 
 ```text
-GET /api/api/auth/health
+GET /api/auth/health
 ```
 
 Expected response:
@@ -77,7 +77,7 @@ Expected response:
 {
     "success": true,
     "package": "sparktech/laravel-auth",
-    "version": "1.1.0",
+    "version": "1.0.0",
     "status": "ready"
 }
 ```
@@ -216,43 +216,22 @@ For `/logout` and `/me`, send:
 Authorization: Bearer YOUR_TOKEN
 ```
 
-## Next milestone
+## Package API route behavior
 
-Core authentication:
+The package keeps authentication routes in its `routes/api.php` file. The route file intentionally does **not** add the `api` prefix. When `php artisan sparktech-auth:install` publishes these routes into the host application's `routes/api.php`, Laravel's API route configuration provides the `/api` prefix.
 
-- User model integration
-- Register
-- Login
-- Logout
-- Validation
-- Token abstraction
-- Feature tests
+Therefore, the default endpoints are:
+
+```text
+/api/auth/register
+/api/auth/login
+/api/auth/logout
+/api/auth/me
+/api/auth/health
+```
+
+The installer adds the package routes to an existing `routes/api.php`, or creates that file when the Laravel API stack is not yet enabled. Use `--force` only when you intentionally want to replace the existing API routes file.
 
 ## Security
 
 This is a proprietary/private package. Do not commit application credentials, OAuth secrets, API keys, or production `.env` files to this repository.
-
-
-## API Routes
-
-The package keeps all authentication API routes in `routes/api.php`. The route file does not hard-code the `api` prefix. The service provider applies the configurable API prefix and middleware when loading the package routes.
-
-By default:
-
-```text
-POST /api/auth/register
-POST /api/auth/login
-POST /api/auth/logout
-GET  /api/auth/me
-POST /api/auth/logout-all
-POST /api/auth/change-password
-POST /api/auth/deactivate
-POST /api/auth/forgot-password
-POST /api/auth/reset-password
-POST /api/auth/email/verify-otp
-POST /api/auth/email/resend-otp
-POST /api/auth/otp/send
-POST /api/auth/otp/verify
-GET  /api/auth/social/{provider}/redirect
-GET  /api/auth/social/{provider}/callback
-```
