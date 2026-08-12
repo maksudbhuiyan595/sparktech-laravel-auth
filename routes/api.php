@@ -14,7 +14,7 @@ Route::prefix(config('dev-auth.prefix', 'auth'))
             return response()->json([
                 'success' => true,
                 'package' => 'dev/laravel-auth',
-                'version' => '0.4.0',
+                'version' => '0.1.0',
                 'status' => 'ready',
                 'auth_driver' => 'sanctum',
             ]);
