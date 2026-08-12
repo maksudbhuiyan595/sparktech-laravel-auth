@@ -40,7 +40,7 @@ final class InstallAuthCommand extends Command
         $this->publishApiRoutes($files);
 
         $this->components->info('Sparktech Authentication installed successfully.');
-        $this->components->line('API routes are available from: routes/api.php');
+        $this->components->info('API routes are available from: routes/api.php');
 
         return self::SUCCESS;
     }
