@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'prefix' => env('DEV_AUTH_PREFIX', 'auth'),
+    'prefix' => env('SPARKTECH_AUTH_PREFIX', 'auth'),
 
     'middleware' => ['api'],
 
@@ -11,7 +11,7 @@ return [
 
     'guard' => 'sanctum',
 
-    'token_expires_in' => env('DEV_AUTH_TOKEN_EXPIRATION', null),
+    'token_expires_in' => env('SPARKTECH_AUTH_TOKEN_EXPIRATION', null),
 
     'password' => [
         'min_length' => 8,
@@ -31,13 +31,13 @@ return [
         'enabled' => true,
         'providers' => [
             'google' => [
-                'enabled' => (bool) env('DEV_AUTH_GOOGLE_ENABLED', false),
+                'enabled' => (bool) env('SPARKTECH_AUTH_GOOGLE_ENABLED', false),
                 'client_id' => env('GOOGLE_CLIENT_ID'),
                 'client_secret' => env('GOOGLE_CLIENT_SECRET'),
                 'redirect' => env('GOOGLE_REDIRECT_URI', '/auth/social/google/callback'),
             ],
             'apple' => [
-                'enabled' => (bool) env('DEV_AUTH_APPLE_ENABLED', false),
+                'enabled' => (bool) env('SPARKTECH_AUTH_APPLE_ENABLED', false),
                 'client_id' => env('APPLE_CLIENT_ID'),
                 'client_secret' => env('APPLE_CLIENT_SECRET'),
                 'redirect' => env('APPLE_REDIRECT_URI', '/auth/social/apple/callback'),

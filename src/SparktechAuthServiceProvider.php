@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth;
+namespace Sparktech\Auth;
 
-use Dev\Auth\Console\InstallAuthCommand;
+use Sparktech\Auth\Console\InstallAuthCommand;
 use Illuminate\Support\ServiceProvider;
 
-final class DevAuthServiceProvider extends ServiceProvider
+final class SparktechAuthServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/dev-auth.php',
-            'dev-auth'
+            __DIR__ . '/../config/sparktech-auth.php',
+            'sparktech-auth'
         );
     }
 
@@ -28,12 +28,12 @@ final class DevAuthServiceProvider extends ServiceProvider
     private function registerPublishing(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/dev-auth.php' => config_path('dev-auth.php'),
-        ], 'dev-auth-config');
+            __DIR__ . '/../config/sparktech-auth.php' => config_path('sparktech-auth.php'),
+        ], 'sparktech-auth-config');
 
         $this->publishes([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
-        ], 'dev-auth-migrations');
+        ], 'sparktech-auth-migrations');
     }
 
     private function registerRoutes(): void

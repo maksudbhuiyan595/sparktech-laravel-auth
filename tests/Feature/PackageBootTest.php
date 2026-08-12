@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Tests\Feature;
+namespace Sparktech\Auth\Tests\Feature;
 
-use Dev\Auth\Tests\TestCase;
+use Sparktech\Auth\Tests\TestCase;
 
 final class PackageBootTest extends TestCase
 {
@@ -14,7 +14,7 @@ final class PackageBootTest extends TestCase
             ->assertOk()
             ->assertJson([
                 'success' => true,
-                'package' => 'dev/laravel-auth',
+                'package' => 'sparktech/laravel-auth',
                 'version' => '0.2.0',
                 'status' => 'ready',
             ]);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Support;
+namespace Sparktech\Auth\Support;
 
 use Illuminate\Http\JsonResponse;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Contracts;
+namespace Sparktech\Auth\Contracts;
 
 interface SocialProvider
 {

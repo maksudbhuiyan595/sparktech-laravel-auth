@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Http\Controllers;
+namespace Sparktech\Auth\Http\Controllers;
 
-use Dev\Auth\Models\AuthOtp;
-use Dev\Auth\Support\ApiResponse;
+use Sparktech\Auth\Models\AuthOtp;
+use Sparktech\Auth\Support\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,13 +39,13 @@ final class OtpController
             'channel' => $request->input('channel', 'email'),
             'purpose' => $request->input('purpose', 'verification'),
             'code_hash' => hash('sha256', $code),
-            'expires_at' => now()->addMinutes((int) config('dev-auth.otp.expires_in', 5)),
+            'expires_at' => now()->addMinutes((int) config('sparktech-auth.otp.expires_in', 5)),
         ]);
 
         // Delivery is intentionally abstracted for the next milestone.
         // Never return OTP in production responses.
         $response = [
-            'expires_in' => (int) config('dev-auth.otp.expires_in', 5) * 60,
+            'expires_in' => (int) config('sparktech-auth.otp.expires_in', 5) * 60,
         ];
 
         if (app()->environment(['local', 'testing'])) {
@@ -80,7 +80,7 @@ final class OtpController
             return ApiResponse::error('OTP is invalid or expired.', null, 422);
         }
 
-        if ($otp->attempts >= (int) config('dev-auth.otp.max_attempts', 5)) {
+        if ($otp->attempts >= (int) config('sparktech-auth.otp.max_attempts', 5)) {
             return ApiResponse::error('Maximum OTP attempts exceeded.', null, 429);
         }
 

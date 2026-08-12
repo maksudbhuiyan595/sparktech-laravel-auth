@@ -52,7 +52,7 @@
 - Aligned Laravel Illuminate dependencies with Laravel 12.
 
 
-All notable changes to `dev/laravel-auth` are documented here.
+All notable changes to `sparktech/laravel-auth` are documented here.
 
 ## [0.1.0] - 2026-08-10
 

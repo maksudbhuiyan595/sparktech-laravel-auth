@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Http\Controllers;
+namespace Sparktech\Auth\Http\Controllers;
 
-use Dev\Auth\Models\SocialAccount;
-use Dev\Auth\Support\ApiResponse;
+use Sparktech\Auth\Models\SocialAccount;
+use Sparktech\Auth\Support\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -15,12 +15,12 @@ final class SocialAuthController
 {
     private function provider(string $provider): void
     {
-        $allowed = array_keys(config('dev-auth.social.providers', []));
+        $allowed = array_keys(config('sparktech-auth.social.providers', []));
 
         abort_unless(in_array($provider, $allowed, true), 404, 'Social provider not configured.');
 
         abort_unless(
-            config("dev-auth.social.providers.$provider.enabled", false),
+            config("sparktech-auth.social.providers.$provider.enabled", false),
             503,
             'Social provider is disabled.'
         );
@@ -46,7 +46,7 @@ final class SocialAuthController
         if ($account) {
             $user = $account->user;
         } else {
-            $model = config('dev-auth.user_model');
+            $model = config('sparktech-auth.user_model');
             $email = $socialUser->getEmail();
 
             $user = $email ? $model::query()->where('email', $email)->first() : null;

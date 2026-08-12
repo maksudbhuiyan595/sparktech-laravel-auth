@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Notifications;
+namespace Sparktech\Auth\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;

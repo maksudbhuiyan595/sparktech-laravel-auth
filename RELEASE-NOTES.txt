@@ -1,0 +1,18 @@
+Sparktech Laravel Auth v0.5.0
+
+Package name:
+sparktech/laravel-auth
+
+PHP:
+^8.2
+
+Laravel:
+^12.0
+
+Install:
+composer require sparktech/laravel-auth
+
+Then:
+php artisan sparktech-auth:install
+php artisan migrate
+php artisan storage:link

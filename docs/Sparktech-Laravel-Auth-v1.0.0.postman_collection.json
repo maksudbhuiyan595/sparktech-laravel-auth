@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "DEV Laravel Auth v0.4.0",
+    "name": "Sparktech Laravel Auth v0.4.0",
     "description": "Core authentication + Sanctum + Google/Apple social login endpoints.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Models;
+namespace Sparktech\Auth\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +18,6 @@ final class SocialAccount extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(config('dev-auth.user_model'));
+        return $this->belongsTo(config('sparktech-auth.user_model'));
     }
 }

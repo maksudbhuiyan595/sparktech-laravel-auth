@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Http\Controllers;
+namespace Sparktech\Auth\Http\Controllers;
 
-use Dev\Auth\Support\ApiResponse;
+use Sparktech\Auth\Support\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password as PasswordRule;
-use Dev\Auth\Services\OtpService;
+use Sparktech\Auth\Services\OtpService;
 
 final class CoreAuthController
 {
@@ -19,14 +19,14 @@ final class CoreAuthController
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', PasswordRule::min(config('dev-auth.password.min_length', 8))],
+            'password' => ['required', 'confirmed', PasswordRule::min(config('sparktech-auth.password.min_length', 8))],
         ]);
 
         if ($validator->fails()) {
             return ApiResponse::error('Validation failed.', $validator->errors());
         }
 
-        $model = config('dev-auth.user_model');
+        $model = config('sparktech-auth.user_model');
         $user = new $model();
         $user->name = $request->string('name')->toString();
         $user->email = $request->string('email')->toString();
@@ -38,7 +38,7 @@ final class CoreAuthController
         return ApiResponse::success('Registration successful. Verification OTP sent to your email.', [
             'user' => $user->fresh(),
             'email_verification_required' => true,
-            'otp_expires_in' => (int) config('dev-auth.otp.expires_in', 5) * 60,
+            'otp_expires_in' => (int) config('sparktech-auth.otp.expires_in', 5) * 60,
         ], 201);
     }
 
@@ -53,14 +53,14 @@ final class CoreAuthController
             return ApiResponse::error('Validation failed.', $validator->errors());
         }
 
-        $model = config('dev-auth.user_model');
+        $model = config('sparktech-auth.user_model');
         $user = $model::query()->where('email', $request->string('email')->toString())->first();
 
         if (! $user) {
             return ApiResponse::error('User not found.', null, 404);
         }
 
-        if (! app(\Dev\Auth\Services\OtpService::class)->verify(
+        if (! app(\Sparktech\Auth\Services\OtpService::class)->verify(
             $user->email,
             $request->string('otp')->toString(),
             'verification'
@@ -92,14 +92,14 @@ final class CoreAuthController
             return ApiResponse::error('Validation failed.', $validator->errors());
         }
 
-        $model = config('dev-auth.user_model');
+        $model = config('sparktech-auth.user_model');
         $user = $model::query()->where('email', $request->string('email')->toString())->first();
 
         if (! $user) {
             return ApiResponse::error('User not found.', null, 404);
         }
 
-        app(\Dev\Auth\Services\OtpService::class)->sendEmail($user->email, 'verification');
+        app(\Sparktech\Auth\Services\OtpService::class)->sendEmail($user->email, 'verification');
 
         return ApiResponse::success('Verification OTP resent successfully.');
     }
@@ -117,7 +117,7 @@ final class CoreAuthController
             return ApiResponse::error('Validation failed.', $validator->errors());
         }
 
-        $model = config('dev-auth.user_model');
+        $model = config('sparktech-auth.user_model');
         $user = $model::query()->where('email', $request->string('email')->toString())->first();
 
         if (! $user || ! Hash::check($request->string('password')->toString(), (string) $user->password)) {
@@ -159,7 +159,7 @@ final class CoreAuthController
     {
         $validator = Validator::make($request->all(), [
             'current_password' => ['required', 'string'],
-            'password' => ['required', 'confirmed', PasswordRule::min(config('dev-auth.password.min_length', 8))],
+            'password' => ['required', 'confirmed', PasswordRule::min(config('sparktech-auth.password.min_length', 8))],
         ]);
 
         if ($validator->fails()) {
@@ -209,7 +209,7 @@ final class CoreAuthController
         $validator = Validator::make($request->all(), [
             'token' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', PasswordRule::min(config('dev-auth.password.min_length', 8))],
+            'password' => ['required', 'confirmed', PasswordRule::min(config('sparktech-auth.password.min_length', 8))],
         ]);
 
         if ($validator->fails()) {

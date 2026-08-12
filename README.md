@@ -1,6 +1,6 @@
-# Dev Laravel Auth
+# Sparktech Laravel Auth
 
-`dev/laravel-auth` is a private, reusable authentication foundation for Laravel applications.
+`sparktech/laravel-auth` is a private, reusable authentication foundation for Laravel applications.
 
 ## Version
 
@@ -61,8 +61,8 @@ From a Laravel application, add the package as a Composer path repository:
 Then:
 
 ```bash
-composer require dev/laravel-auth:@dev
-php artisan dev-auth:install
+composer require sparktech/laravel-auth:@dev
+php artisan sparktech-auth:install
 ```
 
 The package health endpoint will be available at:
@@ -76,8 +76,8 @@ Expected response:
 ```json
 {
     "success": true,
-    "package": "dev/laravel-auth",
-    "version": "0.1.0",
+    "package": "sparktech/laravel-auth",
+    "version": "0.5.0",
     "status": "ready"
 }
 ```
@@ -85,12 +85,12 @@ Expected response:
 ## Package commands
 
 ```bash
-php artisan dev-auth:install
+php artisan sparktech-auth:install
 ```
 
 ## Important integration note
 
-The package uses the host application's configured user model (`dev-auth.user_model`) and expects the standard Laravel `users` table with `name`, `email`, and `password` fields.
+The package uses the host application's configured user model (`sparktech-auth.user_model`) and expects the standard Laravel `users` table with `name`, `email`, and `password` fields.
 
 Run migrations after installing:
 

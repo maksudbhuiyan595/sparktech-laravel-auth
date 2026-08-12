@@ -29,18 +29,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Dev\\Auth\\": "src/"
+            "Sparktech\\Auth\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dev\\Auth\\Tests\\": "tests/"
+            "Sparktech\\Auth\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Dev\\Auth\\DevAuthServiceProvider"
+                "Sparktech\\Auth\\SparktechAuthServiceProvider"
             ]
         }
     },

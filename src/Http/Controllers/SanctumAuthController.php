@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dev\Auth\Http\Controllers;
+namespace Sparktech\Auth\Http\Controllers;
 
-use Dev\Auth\Support\ApiResponse;
+use Sparktech\Auth\Support\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +23,7 @@ final class SanctumAuthController
             return ApiResponse::error('Validation failed.', $validator->errors());
         }
 
-        $modelClass = config('dev-auth.user_model');
+        $modelClass = config('sparktech-auth.user_model');
         $user = new $modelClass();
         $user->name = $request->string('name')->toString();
         $user->email = $request->string('email')->toString();
@@ -53,7 +53,7 @@ final class SanctumAuthController
             return ApiResponse::error('Validation failed.', $validator->errors());
         }
 
-        $modelClass = config('dev-auth.user_model');
+        $modelClass = config('sparktech-auth.user_model');
         $user = $modelClass::query()
             ->where('email', $request->string('email')->toString())
             ->first();
