@@ -13,7 +13,7 @@ Route::prefix(config('sparktech-auth.prefix', 'auth'))
             return response()->json([
                 'success' => true,
                 'package' => 'sparktech/laravel-auth',
-                'version' => '1.0.1',
+                'version' => '1.0.2',
                 'status' => 'ready',
                 'auth_driver' => 'sanctum',
             ]);

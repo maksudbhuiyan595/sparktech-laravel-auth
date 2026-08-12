@@ -15,7 +15,7 @@ final class PackageBootTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'package' => 'sparktech/laravel-auth',
-                'version' => '1.0.1',
+                'version' => '1.0.2',
                 'status' => 'ready',
             ]);
     }
