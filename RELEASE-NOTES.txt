@@ -1,17 +1,14 @@
-Sparktech Laravel Auth v1.2.0
+Sparktech Laravel Auth v1.0.1
 
-Route architecture update:
-- routes/api.php contains the package API endpoints.
-- No `api` prefix is hard-coded inside routes/api.php.
-- The service provider applies `/api` by default when loading the package API routes.
-- The package route file applies `/auth`, resulting in `/api/auth/...`.
+Compatibility:
+- PHP 8.2+
+- Laravel 12.x
+- Pest 3.x for package development/testing on PHP 8.2
 
-Examples:
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/auth/me
-POST /api/auth/logout
-GET  /api/auth/social/google/redirect
-GET  /api/auth/social/google/callback
-GET  /api/auth/social/apple/redirect
-GET  /api/auth/social/apple/callback
+Fixes:
+- Package boot test now explicitly loads package routes in the Testbench environment.
+- Laravel auto-discovery remains configured for Sparktech\\Auth\\SparktechAuthServiceProvider.
+- Package version references are consistent with 1.0.1.
+
+Important:
+- v1.0.0 is already published on Packagist. Use v1.0.1 for the corrected release.

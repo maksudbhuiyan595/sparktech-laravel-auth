@@ -1,13 +1,11 @@
 # Changelog
 
-## 1.3.1 - 2026-08-12
-- Fixed the package health test version assertion.
-- Kept API routes publishable to the host application `routes/api.php` without hard-coding the `api` prefix.
+## 1.0.1 - 2026-08-12
+- Fixed the package boot feature test so package routes are loaded in the Testbench environment.
+- Kept Laravel package auto-discovery via `Sparktech\\Auth\\SparktechAuthServiceProvider`.
 - Updated development tooling to Pest 3.x for PHP 8.2 compatibility.
 - Added Composer plugin permission configuration for Pest.
+- Fixed package version references to 1.0.1.
 
-## 1.3.0 - 2026-08-12
-- API routes are published into the consuming Laravel application `routes/api.php` by `sparktech-auth:install`.
-- Removed automatic package route registration to avoid duplicate routes.
-- The package no longer applies an `api` prefix itself. Laravel's API route configuration provides `/api`.
-- Laravel 12 `install:api` is invoked when available.
+## 1.0.0 - 2026-08-12
+- Initial Laravel 12 authentication foundation release.

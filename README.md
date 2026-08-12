@@ -4,7 +4,7 @@
 
 ## Version
 
-**1.0.0 — Laravel 12 Authentication Foundation**
+**1.0.1 — Laravel 12 Authentication Foundation**
 
 ## Current milestone
 
@@ -77,7 +77,7 @@ Expected response:
 {
     "success": true,
     "package": "sparktech/laravel-auth",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "status": "ready"
 }
 ```

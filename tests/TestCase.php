@@ -15,4 +15,9 @@ abstract class TestCase extends Orchestra
             SparktechAuthServiceProvider::class,
         ];
     }
+
+    protected function defineRoutes($router): void
+    {
+        require dirname(__DIR__) . '/routes/api.php';
+    }
 }
