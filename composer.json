@@ -1,5 +1,5 @@
 {
-    "name": "dev/laravel-auth",
+    "name": "sparktech/laravel-auth",
     "description": "Professional authentication foundation package for Laravel applications.",
     "type": "library",
     "license": "proprietary",
