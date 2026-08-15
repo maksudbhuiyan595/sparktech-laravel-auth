@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.3 - 2026-08-15
+- Package routes are now registered automatically by the service provider.
+- `sparktech-auth:install` no longer creates, replaces, or appends to the application's `routes/api.php`.
+- Application `routes/api.php` stays clean and contains only application-owned routes.
+- Added configurable `api_prefix` (default: `api`).
+- Package authentication routes are available under `/api/auth/*` by default.
+- Package health endpoint version updated to 1.0.3.
+
 ## 1.0.2 - 2026-08-12
 - Clean Laravel 12 package release for PHP 8.2+.
 - Fixed package namespace/autoload metadata to use `Sparktech\Auth`.

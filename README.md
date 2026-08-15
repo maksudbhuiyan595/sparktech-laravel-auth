@@ -4,7 +4,7 @@
 
 ## Version
 
-**1.0.2 — Laravel 12 Authentication Foundation**
+**1.0.3 — Laravel 12 Authentication Foundation**
 
 ## Current milestone
 
@@ -18,7 +18,7 @@ This release establishes the package foundation:
 - Publishable config
 - Publishable migrations directory
 - Package installation command
-- Package route registration
+- Package route registration without modifying the application's `routes/api.php`
 - Health endpoint
 - Initial test/tooling configuration
 
