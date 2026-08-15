@@ -1,3 +1,8 @@
-Sparktech Laravel Auth v1.0.4
+Sparktech Laravel Auth v1.0.3
 
-Application routes/api.php is not modified by installation. Package routes are loaded internally from routes/auth.php.
+Changes:
+- Installer now merges package imports and routes into the existing routes/api.php.
+- Prevents duplicate <?php tags.
+- Prevents duplicate use statements.
+- Preserves the Laravel application routes.
+- Package routes remain available under the configured auth prefix.

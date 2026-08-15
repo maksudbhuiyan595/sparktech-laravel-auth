@@ -6,8 +6,6 @@ return [
 
     'prefix' => env('SPARKTECH_AUTH_PREFIX', 'auth'),
 
-    'api_prefix' => env('SPARKTECH_AUTH_API_PREFIX', 'api'),
-
     'middleware' => ['api'],
 
     'user_model' => App\Models\User::class,

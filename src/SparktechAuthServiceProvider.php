@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Sparktech\Auth;
 
 use Sparktech\Auth\Console\InstallAuthCommand;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 final class SparktechAuthServiceProvider extends ServiceProvider
@@ -19,19 +20,9 @@ final class SparktechAuthServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->registerRoutes();
         $this->registerPublishing();
         $this->registerMigrations();
         $this->registerCommands();
-    }
-
-    private function registerRoutes(): void
-    {
-        if ($this->app->routesAreCached()) {
-            return;
-        }
-
-        $this->loadRoutesFrom(__DIR__ . '/../routes/auth.php');
     }
 
     private function registerPublishing(): void

@@ -4,7 +4,7 @@
 
 ## Version
 
-**1.0.3 — Laravel 12 Authentication Foundation**
+**1.0.2 — Laravel 12 Authentication Foundation**
 
 ## Current milestone
 
@@ -18,7 +18,7 @@ This release establishes the package foundation:
 - Publishable config
 - Publishable migrations directory
 - Package installation command
-- Package route registration without modifying the application's `routes/api.php`
+- Package route registration
 - Health endpoint
 - Initial test/tooling configuration
 
@@ -230,7 +230,7 @@ Therefore, the default endpoints are:
 /api/auth/health
 ```
 
-The installer adds the package routes to an existing `routes/api.php`, or creates that file when the Laravel API stack is not yet enabled. Use `--force` only when you intentionally want to replace the existing API routes file.
+The installer merges the package routes and required imports into an existing `routes/api.php`, or creates that file when the Laravel API stack is not yet enabled. Use `--force` only when you intentionally want to replace the existing API routes file.
 
 ## Security
 
