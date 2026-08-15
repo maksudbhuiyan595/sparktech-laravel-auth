@@ -1,12 +1,3 @@
-Sparktech Laravel Auth v1.0.2
+Sparktech Laravel Auth v1.0.4
 
-Requirements:
-- PHP 8.2+
-- Laravel 12.x
-
-Important fixes:
-- PSR-4 namespace: Sparktech\Auth\ => src/
-- Laravel provider: Sparktech\Auth\SparktechAuthServiceProvider
-- Install command: php artisan sparktech-auth:install
-- Pest 3.x for PHP 8.2 compatibility
-- Package boot test explicitly loads package routes
+Application routes/api.php is not modified by installation. Package routes are loaded internally from routes/auth.php.

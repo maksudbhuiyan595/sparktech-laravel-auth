@@ -31,7 +31,7 @@ final class SparktechAuthServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/auth.php');
     }
 
     private function registerPublishing(): void
